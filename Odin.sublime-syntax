@@ -244,6 +244,15 @@ contexts:
           scope: punctuation.definition.string.end.odin
           pop: true
         - include: string-escaped-char
+#glsl
+        - match: '//\@syntax\(glsl\)'
+          pop: true
+          scope: source.glsl.embedded
+          embed: scope:source.glsl
+          embed_scope: source.glsl.embedded
+          escape: "`"
+          escape_captures:
+            0: punctuation.definition.string.end.odin
 
   string-escaped-char:
     - match: '\\(\\|[abefnrutv''"]|x\h{2}|u\h{4}|U\h{8}|[0-7]{3})'
