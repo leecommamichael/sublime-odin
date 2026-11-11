@@ -236,14 +236,6 @@ contexts:
         - match: "`"
           scope: punctuation.definition.string.end.odin
           pop: true
-    - match: "'"
-      scope: punctuation.definition.string.begin.odin
-      push:
-        - meta_scope: string.quoted.raw.odin
-        - match: "'"
-          scope: punctuation.definition.string.end.odin
-          pop: true
-        - include: string-escaped-char
 #glsl
         - match: '//\@syntax\(glsl\)'
           pop: true
@@ -253,6 +245,14 @@ contexts:
           escape: "`"
           escape_captures:
             0: punctuation.definition.string.end.odin
+    - match: "'"
+      scope: punctuation.definition.string.begin.odin
+      push:
+        - meta_scope: string.quoted.raw.odin
+        - match: "'"
+          scope: punctuation.definition.string.end.odin
+          pop: true
+        - include: string-escaped-char
 
   string-escaped-char:
     - match: '\\(\\|[abefnrutv''"]|x\h{2}|u\h{4}|U\h{8}|[0-7]{3})'
